@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Player : MonoBehaviour
 {
     public float health = 100;
+    public float lives = 3;
     public GameObject deathEffect;
+
+
+
 
     public void UpdateHealth(float newHealth)
     {
@@ -16,6 +21,18 @@ public class Player : MonoBehaviour
         if (health <= 0)
         {
             Die();
+
+        }
+    }
+
+    public void Lives(float newLives)
+    {
+        lives = newLives;
+
+        if (health <= 0)
+        {
+            //playerLives - 1;
+
         }
     }
 
@@ -23,6 +40,14 @@ public class Player : MonoBehaviour
     {
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    void GameOver()
+    {
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 

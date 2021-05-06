@@ -7,7 +7,9 @@ public class HealthController : MonoBehaviour
 {
     private Player player;
     public float playerHealth;
+    public float playerLives;
     [SerializeField] private Text healthText;
+    [SerializeField] private Text livesText;
 
     private void Start()
     {
@@ -18,5 +20,15 @@ public class HealthController : MonoBehaviour
     {
         player.UpdateHealth(playerHealth);
         healthText.text = playerHealth.ToString("0");
+    }
+    public void Lives()
+    {
+        player = FindObjectOfType<Player>();
+        playerLives = player.lives;
+    }
+    public void UpdateLives()
+    {
+        player.Lives(playerLives);
+        healthText.text = playerLives.ToString("0");
     }
 }
